@@ -4,6 +4,8 @@
 &lt;li&gt;&lt;a href="#platform-detection"&gt;Platform detection&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#compiler-detection"&gt;Compiler detection&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#architecture-detection"&gt;Architecture detection&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#gcc-pragmas"&gt;GCC pragmas&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#msvc-pragmas"&gt;MSVC pragmas&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href="#standard-headers"&gt;Standard Headers&lt;/a&gt;&lt;/li&gt;
@@ -18,24 +20,8 @@
 #endif
 
 #ifdef __APPLE__
- // Apple
-
- #include &amp;lt;TargetConditionals.h&amp;gt;
- #idef TARGET_OS_OSX
- // macOS
- #elif TARGET_OS_IPHONE
- // Some kind of mobile device
- #if TARGET_OS_MACCATALYST
- // Mac Catalyst - iOS app on macOS
- #elif TARGET_OS_VISION
- // visionOS
- #elif TARGET_OS_TV
- // tvOS
- #else
- // iOS
- #endif
- #endif // TARGET_OS_OSX
-#endif // __APPLE__
+ // Apple - flags for specific devices defined in &amp;lt;TargetConditionals.h&amp;gt;
+#endif
 
 #ifdef __linux__
  // Linux
@@ -50,7 +36,7 @@
 #endif
 
 #ifdef _MSC_VER
- // Visual C++
+ // Visual C
 #endif
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id="architecture-detection"&gt;Architecture detection&lt;/h3&gt;
 &lt;pre tabindex="0"&gt;&lt;code&gt;#if (defined(_MSC_VER) &amp;amp;&amp;amp; _M_X64) || (defined(__GNUC__) &amp;amp;&amp;amp; __amd64__)
@@ -60,6 +46,23 @@
 #if (defined(_MSC_VER) &amp;amp;&amp;amp; _M_ARM64) || (defined(__GNUC__) &amp;amp;&amp;amp; __aarch64__)
  // arm64
 #endif
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="gcc-pragmas"&gt;GCC pragmas&lt;/h3&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;// Push/pop warning state
+#pragma GCC diagnostic push
+#pragma GCC diagnostic pop
+
+// Disable a warning
+#pragma GCC diagnostic ignored &amp;#34;-Wunused-variable&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="msvc-pragmas"&gt;MSVC pragmas&lt;/h3&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;// Link against abc.lib
+#pragma comment(lib, &amp;#34;abc.lib&amp;#34;)
+
+// Push/pop warning state
+#pragma warning(push)
+#pragma warning(pop)
+
+// Disable a warning
+#pragma warning(disable: 4996)
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id="standard-headers"&gt;Standard Headers&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://en.cppreference.com/w/c/header.html"&gt;C standard headers&lt;/a&gt;&lt;/li&gt;
