@@ -1,0 +1,5 @@
+baseURL = 'https://kvog.sh/'
+languageCode = 'en-us'
+title = 'kvog.sh'
+theme = 'hugo-xmin'
+
