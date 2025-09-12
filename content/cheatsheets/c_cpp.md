@@ -6,6 +6,8 @@ title = 'C/C++'
   * [Platform detection](#platform-detection)
   * [Compiler detection](#compiler-detection)
   * [Architecture detection](#architecture-detection)
+  * [GCC pragmas](#gcc-pragmas)
+  * [MSVC pragmas](#msvc-pragmas)
 * [Standard Headers](#standard-headers)
 
 ## Preprocessor Definitions
@@ -19,24 +21,8 @@ title = 'C/C++'
 #endif
 
 #ifdef __APPLE__
-  // Apple
-
-  #include <TargetConditionals.h>
-  #idef TARGET_OS_OSX
-    // macOS
-  #elif TARGET_OS_IPHONE
-    // Some kind of mobile device
-    #if TARGET_OS_MACCATALYST
-      // Mac Catalyst - iOS app on macOS
-    #elif TARGET_OS_VISION
-      // visionOS
-    #elif TARGET_OS_TV
-      // tvOS
-    #else
-      // iOS
-    #endif
-  #endif // TARGET_OS_OSX
-#endif // __APPLE__
+  // Apple - flags for specific devices defined in <TargetConditionals.h>
+#endif
 
 #ifdef __linux__
   // Linux
@@ -55,7 +41,7 @@ title = 'C/C++'
 #endif
 
 #ifdef _MSC_VER
-  // Visual C++
+  // Visual C
 #endif
 ```
 
@@ -68,6 +54,29 @@ title = 'C/C++'
 #if (defined(_MSC_VER) && _M_ARM64) || (defined(__GNUC__) && __aarch64__)
   // arm64
 #endif
+```
+
+### GCC pragmas
+```
+// Push/pop warning state
+#pragma GCC diagnostic push
+#pragma GCC diagnostic pop
+
+// Disable a warning
+#pragma GCC diagnostic ignored "-Wunused-variable"
+```
+
+### MSVC pragmas
+```
+// Link against abc.lib
+#pragma comment(lib, "abc.lib")
+
+// Push/pop warning state
+#pragma warning(push)
+#pragma warning(pop)
+
+// Disable a warning
+#pragma warning(disable: 4996)
 ```
 
 ## Standard Headers
