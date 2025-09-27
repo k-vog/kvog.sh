@@ -15,7 +15,7 @@ title = 'C/C++'
 * [predef wiki](https://github.com/cpredef/predef)
 
 ### Platform detection
-```
+```c
 #ifdef _WIN32
   // Windows
 #endif
@@ -31,7 +31,7 @@ title = 'C/C++'
 ```
 
 ### Compiler detection
-```
+```c
 #ifdef __GNUC__
   // GCC
 #endif
@@ -46,7 +46,7 @@ title = 'C/C++'
 ```
 
 ### Architecture detection
-```
+```c
 #if (defined(_MSC_VER) && _M_X64) || (defined(__GNUC__) && __amd64__)
   // x86-64
 #endif
@@ -57,7 +57,7 @@ title = 'C/C++'
 ```
 
 ### GCC pragmas
-```
+```c
 // Push/pop warning state
 #pragma GCC diagnostic push
 #pragma GCC diagnostic pop
@@ -67,7 +67,7 @@ title = 'C/C++'
 ```
 
 ### MSVC pragmas
-```
+```c
 // Link against abc.lib
 #pragma comment(lib, "abc.lib")
 

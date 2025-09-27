@@ -3,3 +3,5 @@ languageCode = 'en-us'
 title = 'kvog.sh'
 theme = 'hugo-xmin'
 
+[markup.highlight]
+style = "github"
